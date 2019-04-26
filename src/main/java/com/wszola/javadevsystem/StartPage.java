@@ -10,7 +10,12 @@ public class StartPage {
 
     @GetMapping("/")
     public String sayHello() {
-        return "Hello World " + LocalDateTime.now();
+        return "Hello World! " + LocalDateTime.now();
     }
 
-}
+    @GetMapping("/dt")
+    public String devToolsTest() {
+        return "Automatic reloading!";
+    }
+
+    }
