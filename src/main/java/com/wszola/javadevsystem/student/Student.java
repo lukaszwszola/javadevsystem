@@ -1,4 +1,4 @@
-package com.wszola.javadevsystem;
+package com.wszola.javadevsystem.student;
 
 import javax.persistence.*;
 
