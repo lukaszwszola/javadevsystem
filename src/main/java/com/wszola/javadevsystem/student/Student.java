@@ -3,7 +3,7 @@ package com.wszola.javadevsystem.student;
 import javax.persistence.*;
 
 @Entity
-@Table(name="student")
+@Table(name="students")
 public class Student {
 
     @Id
