@@ -3,7 +3,7 @@ package com.wszola.javadevsystem.student;
 import javax.persistence.*;
 
 @Entity
-@Table(name="students")
+@Table(name="student")
 public class Student {
 
     @Id
@@ -27,14 +27,6 @@ public class Student {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getFirstName() {

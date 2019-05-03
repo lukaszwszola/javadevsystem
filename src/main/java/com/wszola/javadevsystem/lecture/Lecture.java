@@ -1,6 +1,10 @@
 package com.wszola.javadevsystem.lecture;
 
+import com.wszola.javadevsystem.attendance.Attendance;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="lecture")
@@ -20,13 +24,45 @@ public class Lecture {
     @Column(name="about_instructor")
     private String aboutInstructor;
 
-    @OneToOne(mappedBy = "lecture", cascade = CascadeType.ALL)
-    private AttendanceList attendanceList = new AttendanceList();
+    @OneToMany(mappedBy = "lecture")
+    private List<Attendance> attendanceList = new ArrayList<>();
 
     public Lecture(){
     }
 
     public Lecture(String title) {
         this.title = title;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getAboutInstructor() {
+        return aboutInstructor;
+    }
+
+    public void setAboutInstructor(String aboutInstructor) {
+        this.aboutInstructor = aboutInstructor;
+    }
+
+    public List<Attendance> getAttendanceList() {
+        return attendanceList;
+    }
+
+    public void setAttendanceList(List<Attendance> attendanceList) {
+        this.attendanceList = attendanceList;
     }
 }
