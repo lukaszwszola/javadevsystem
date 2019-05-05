@@ -24,19 +24,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                //.antMatchers("/students/**").hasRole("ADMIN")
+                .antMatchers("/students/**").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()
                 .httpBasic()
-
                 .and().sessionManagement().disable();
     }
 
-    //@Bean
-    //public PasswordEncoder passwordEncoder() {
-    //    return new BCryptPasswordEncoder();
-    //}
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -45,9 +44,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth
                 .inMemoryAuthentication()
                 .withUser("admin")
-                .password("{noop}admin")
+                //.password("{noop}admin")
+                .password("$2a$10$QwdI5R4emJpnH99R44cWse3C7h3GE5q.7AdaqPP10m32fqnQWYZdu")
                 .roles("USER", "ADMIN");
     }
-
-
 }
