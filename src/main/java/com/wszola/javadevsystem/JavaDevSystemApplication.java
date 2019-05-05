@@ -24,7 +24,7 @@ public class JavaDevSystemApplication {
 		return args -> {
 			//List<String> firstNames = Arrays.asList("udara", "sampath");
 			//firstNames.forEach(firstName -> studentRepository.save(new Student(firstName)));
-			studentRepository.save(new Student("Lukasz", "Wszola", "lukasz.wszola@gmail.com", "test", "61685"));
+			studentRepository.save(new Student("Lukasz", "Wszola", "lukasz.wszola@gmail.com", "{noop}test", "61685"));
 			studentRepository.save(new Student("Marian", "Tomkiewicz", "m.t@gmail.com", "test", "61677"));
 			studentRepository.save(new Student("Krzysztof", "Borek", "k.b@gmail.com", "test", "42111"));
 		};
