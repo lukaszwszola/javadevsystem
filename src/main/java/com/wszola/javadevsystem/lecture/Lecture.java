@@ -30,8 +30,10 @@ public class Lecture {
     public Lecture(){
     }
 
-    public Lecture(String title) {
+    public Lecture(String title, String description, String aboutInstructor) {
         this.title = title;
+        this.description = description;
+        this.aboutInstructor = aboutInstructor;
     }
 
     public String getTitle() {

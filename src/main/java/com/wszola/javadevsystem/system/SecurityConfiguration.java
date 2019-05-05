@@ -22,6 +22,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .withUser("admin")
                 .password("{noop}admin")
                 .roles("USER", "ADMIN");
+
+
     }
 
     @Override
