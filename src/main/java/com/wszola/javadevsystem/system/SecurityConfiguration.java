@@ -1,6 +1,5 @@
 package com.wszola.javadevsystem.system;
 
-import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -46,8 +45,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth
                 .inMemoryAuthentication()
                 .withUser("admin")
-                //.password("{noop}admin")
                 .password("$2a$10$QwdI5R4emJpnH99R44cWse3C7h3GE5q.7AdaqPP10m32fqnQWYZdu")
+                //.password("{noop}admin")
                 .authorities("ADMIN","USER");
                 //.roles("ADMIN");
     }

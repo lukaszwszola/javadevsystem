@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-//@RepositoryRestController
 public class LectureController {
 
     private final LectureRepository lectureRepository;

@@ -9,9 +9,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.util.Arrays;
-import java.util.List;
-
 @SpringBootApplication
 public class JavaDevSystemApplication {
 
@@ -22,11 +19,9 @@ public class JavaDevSystemApplication {
 	@Bean
 	CommandLineRunner initStudents (StudentRepository studentRepository){
 		return args -> {
-			//List<String> firstNames = Arrays.asList("udara", "sampath");
-			//firstNames.forEach(firstName -> studentRepository.save(new Student(firstName)));
-			studentRepository.save(new Student("Lukasz", "Wszola", "lukasz.wszola@gmail.com", "$2a$10$sEcave0GvrRCldwyZ0mkzebI2tIOYVIsOroOzkO6RnuDf2oILawc2", "61685"));
-			studentRepository.save(new Student("Marian", "Tomkiewicz", "m.t@gmail.com", "test", "61677"));
-			studentRepository.save(new Student("Krzysztof", "Borek", "k.b@gmail.com", "test", "42111"));
+			studentRepository.save(new Student("Lukasz", "Wszola", "l.w@gmail.com", "$2a$10$sEcave0GvrRCldwyZ0mkzebI2tIOYVIsOroOzkO6RnuDf2oILawc2", "61685"));
+			studentRepository.save(new Student("Marian", "Tomkiewicz", "m.t@gmail.com", "$2a$10$sEcave0GvrRCldwyZ0mkzebI2tIOYVIsOroOzkO6RnuDf2oILawc2", "61677"));
+			studentRepository.save(new Student("Krzysztof", "Borek", "k.b@gmail.com", "$2a$10$sEcave0GvrRCldwyZ0mkzebI2tIOYVIsOroOzkO6RnuDf2oILawc2", "42111"));
 		};
 	}
 
@@ -39,7 +34,4 @@ public class JavaDevSystemApplication {
 
 		};
 	}
-
-
-
 }

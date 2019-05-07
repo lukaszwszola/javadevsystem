@@ -25,6 +25,14 @@ public class Attendance {
     public Attendance() {
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Lecture getLecture() {
         return lecture;
     }

@@ -1,16 +1,14 @@
 package com.wszola.javadevsystem.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.security.RolesAllowed;
-import java.security.Principal;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/students")
 public class StudentController {
 
     private final StudentService studentService;
@@ -20,44 +18,35 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @GetMapping("students")
+    @GetMapping("/")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public List<Student> getStudents(Principal principal) {
-        System.out.println(principal);
+    public List<Student> getStudents() {
         return studentService.getStudents();
     }
 
-    @PostMapping(value="students")
-    //@RolesAllowed({"ADMIN"})
-    @PreAuthorize("hasRole('ADMIN')")
-    public Student addEntity(@RequestBody Student student) {
+    @PostMapping(value="/")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public Student addStudent(@RequestBody Student student) {
         return studentService.saveStudent(student);
     }
 
-    @GetMapping(value="students/{id}")
-    //@RolesAllowed({"ADMIN","USER"})
-    //@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    @PreAuthorize("hasAuthority('USER')")
-    public Student getStudent(@PathVariable("id") int id, Principal principal) {
-        Student student = studentService.getStudent(id);
-        if(principal.getName().equals("admin")) return student;
-        if(principal.getName().equals(student.getStudentNo()) || principal.getName().equals(student.getEmail())) {
-            return student;
-        }
-        return null;
+    @GetMapping(value="/{id}")
+    @PostAuthorize("hasAuthority('ADMIN') or principal.username.equals(returnObject.studentNo) or principal.username.equals(returnObject.email)")
+    public Student getStudent(@PathVariable("id") int id) {
+        return studentService.getStudent(id);
     }
 
-    //@PutMapping(value="students/{id}")
-    //public Student updateStudent(@RequestBody Student student) {
+    @PutMapping(value="/{id}")
+    @PostAuthorize("hasAuthority('ADMIN') or principal.username.equals(returnObject.studentNo) or principal.username.equals(returnObject.email)")
+    public Student updateStudent(@PathVariable("id") int id, @RequestBody Student student) {
+        return studentService.updateStudent(id, student);
+    //    student.setId(id);
     //    return studentService.saveStudent(student);
-    //}
+    }
 
-    //@PutMapping(value="students/{id}")
-    //public Student updateStudent(@PathVariable int id) {
-    //   Student student = studentService.getStudent(id);
-    //    return studentService.saveStudent(student);
-    //}
-
-
-
+    @DeleteMapping(value="/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public void deleteStudent(@PathVariable("id") int id) {
+        studentService.deleteStudent(id);
+    }
 }
