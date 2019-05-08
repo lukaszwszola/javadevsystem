@@ -1,5 +1,6 @@
 package com.wszola.javadevsystem.student;
 
+import com.wszola.javadevsystem.lecture.LectureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import java.util.List;
 public class StudentService {
 
     private final StudentRepository studentRepository;
+
     private PasswordEncoder passwordEncoder;
 
     @Autowired
@@ -39,4 +41,9 @@ public class StudentService {
     public void deleteStudent(int id) {
         studentRepository.delete(getStudent(id));
     }
+
+    public Student getStudentByStudentNoOrEmail(String studentNoOrEmail){
+        return studentRepository.findByStudentNoOrEmail(studentNoOrEmail, studentNoOrEmail);
+    }
+
 }

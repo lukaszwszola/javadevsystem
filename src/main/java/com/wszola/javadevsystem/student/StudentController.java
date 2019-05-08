@@ -40,8 +40,6 @@ public class StudentController {
     @PostAuthorize("hasAuthority('ADMIN') or principal.username.equals(returnObject.studentNo) or principal.username.equals(returnObject.email)")
     public Student updateStudent(@PathVariable("id") int id, @RequestBody Student student) {
         return studentService.updateStudent(id, student);
-    //    student.setId(id);
-    //    return studentService.saveStudent(student);
     }
 
     @DeleteMapping(value="/{id}")

@@ -1,5 +1,6 @@
 package com.wszola.javadevsystem.attendance;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.wszola.javadevsystem.lecture.Lecture;
 import com.wszola.javadevsystem.student.Student;
 
@@ -14,6 +15,7 @@ public class Attendance {
     @Column(name="id")
     private int id;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     private Lecture lecture;
 
@@ -23,6 +25,12 @@ public class Attendance {
     private boolean present;
 
     public Attendance() {
+    }
+
+    public Attendance(Lecture lecture, Student student, boolean present) {
+        this.lecture = lecture;
+        this.student = student;
+        this.present = present;
     }
 
     public int getId() {

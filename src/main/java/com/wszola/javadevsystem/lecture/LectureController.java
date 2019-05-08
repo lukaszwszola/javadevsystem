@@ -1,9 +1,13 @@
 package com.wszola.javadevsystem.lecture;
 
+import com.wszola.javadevsystem.attendance.Attendance;
+import com.wszola.javadevsystem.attendance.AttendanceService;
+import com.wszola.javadevsystem.student.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -11,10 +15,14 @@ import java.util.List;
 public class LectureController {
 
     private final LectureService lectureService;
+    private final AttendanceService attendanceService;
+    private final StudentService studentService;
 
     @Autowired
-    public LectureController(LectureService lectureService) {
+    public LectureController(LectureService lectureService, AttendanceService attendanceService, StudentService studentService) {
         this.lectureService = lectureService;
+        this.attendanceService = attendanceService;
+        this.studentService = studentService;
     }
 
     @GetMapping("/")
@@ -47,4 +55,16 @@ public class LectureController {
         lectureService.deleteLecture(id);
     }
 
+    @GetMapping(value="/{id}/attendance")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public List<Attendance> getAttendanceList(@PathVariable("id") int id) {
+        return attendanceService.getAttendanceListByLectureId(id);
+    }
+
+    @PostMapping(value="/{id}/attendance")
+    @PreAuthorize("hasAuthority('USER')")
+    public Attendance addAttendanceByStudent(@PathVariable int id, Principal principal) {
+        String currentUserName = principal.getName();
+        return attendanceService.addAttendance(getLecture(id),studentService.getStudentByStudentNoOrEmail(currentUserName),true);
+    }
 }
