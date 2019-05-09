@@ -27,7 +27,7 @@ public class LectureController {
 
     @GetMapping
     @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
-    public List<Lecture> getStudents() {
+    public List<Lecture> getLectures() {
         return lectureService.getLectures();
     }
 
