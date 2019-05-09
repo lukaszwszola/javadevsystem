@@ -25,20 +25,20 @@ public class LectureController {
         this.studentService = studentService;
     }
 
-    @GetMapping("/")
+    @GetMapping
     @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
     public List<Lecture> getStudents() {
         return lectureService.getLectures();
     }
 
-    @PostMapping(value="/")
+    @PostMapping
     @PreAuthorize("hasAuthority('ADMIN')")
     public Lecture addLecture(@RequestBody Lecture lecture) {
         return lectureService.saveLecture(lecture);
     }
 
     @GetMapping(value="/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
     public Lecture getLecture(@PathVariable("id") int id) {
         return lectureService.getLecture(id);
     }

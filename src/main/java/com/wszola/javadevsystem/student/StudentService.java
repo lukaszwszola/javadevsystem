@@ -11,7 +11,6 @@ import java.util.List;
 public class StudentService {
 
     private final StudentRepository studentRepository;
-
     private PasswordEncoder passwordEncoder;
 
     @Autowired

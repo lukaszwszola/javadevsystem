@@ -8,7 +8,7 @@ public class StartPage {
 
     @GetMapping("/")
     public String sayHello() {
-        return "Hello!";
+        return "Witaj w systemie JavaDev!";
     }
 
-    }
+}

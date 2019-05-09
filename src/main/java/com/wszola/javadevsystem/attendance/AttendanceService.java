@@ -31,11 +31,11 @@ public class AttendanceService {
 
     public List<Attendance> getAttendanceListByLectureId(int id) {
         List<Attendance> attendancesListByLectureId = attendanceRepository.findAll();
-        List filtred = attendancesListByLectureId
+        List filtered = attendancesListByLectureId
                 .stream()
                 .filter(l->l.getLecture().getId()==id)
                 .collect(Collectors.toList());
-        return filtred;
+        return filtered;
     }
 
 }

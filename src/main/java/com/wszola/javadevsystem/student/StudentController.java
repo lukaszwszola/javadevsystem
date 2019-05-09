@@ -18,13 +18,13 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @GetMapping("/")
+    @GetMapping
     @PreAuthorize("hasAuthority('ADMIN')")
     public List<Student> getStudents() {
         return studentService.getStudents();
     }
 
-    @PostMapping(value="/")
+    @PostMapping
     @PreAuthorize("hasAuthority('ADMIN')")
     public Student addStudent(@RequestBody Student student) {
         return studentService.saveStudent(student);
