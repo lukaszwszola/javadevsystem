@@ -1,6 +1,7 @@
 package com.wszola.javadevsystem.student;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="student")
@@ -11,19 +12,24 @@ public class Student {
     @Column(name="id")
     private int id;
 
+    @NotBlank
     @Column(name="first_name")
     private String firstName;
 
+    @NotBlank
     @Column(name="last_name")
     private String lastName;
 
-    @Column(name="email")
+    @NotBlank
+    @Column(name="email", unique = true)
     private String email;
 
+    @NotBlank
     @Column(name="password")
     private String password;
 
-    @Column(name="student_no")
+    @NotBlank
+    @Column(name="student_no", unique = true)
     private String studentNo;
 
     public Student() {

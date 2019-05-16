@@ -3,6 +3,7 @@ package com.wszola.javadevsystem.lecture;
 import com.wszola.javadevsystem.attendance.Attendance;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +16,7 @@ public class Lecture {
     @Column(name="id")
     private int id;
 
+    @NotBlank
     @Column(name="title")
     private String title;
 
